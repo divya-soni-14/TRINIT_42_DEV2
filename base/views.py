@@ -20,9 +20,10 @@ def register(request):
         user.organisation = request.POST.get('organisation')
         user.save()
     else:
-        return render(request, "login.html")
+        return render(request, "register.html")
 
 def lin(request):
+    print(request.user)
     if request.user.is_authenticated:
         print("alledyy man")
         return redirect('home')
@@ -35,7 +36,7 @@ def lin(request):
             user = users.objects.get(username=username)
             print(password,user.password)
             if user.password == password:
-                print(user._meta)
+                print(user.last_login)
                 login(request, user)
                 print("success")
                 return redirect('home')
@@ -62,9 +63,6 @@ def home(request):
 
 
 
-
-def register(request):
-    return render(request, "register.html")
 
 
 def register_teamcode(request):
