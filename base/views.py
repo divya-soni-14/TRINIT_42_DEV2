@@ -13,3 +13,10 @@ def login(request):
 
 def register(request):
     return render(request, "register.html")
+
+
+def register_teamcode(request):
+    return render(request, 'register_teamcode.html')
+
+def dashboard(request):
+    return render(request, 'dashboard.html')
