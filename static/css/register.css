@@ -34,3 +34,12 @@
     rgba(143, 211, 244, 1)
   );
 }
+
+.border-greene {
+  border: 5px solid green;
+}
+
+.register__btn {
+  width: 150px !important;
+  background-color: red;
+}
