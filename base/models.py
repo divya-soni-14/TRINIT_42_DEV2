@@ -77,5 +77,5 @@ class softwares(models.Model):
 
     class Meta:
         managed = True
-        app_label = '42'
+        app_label = 'base'
         db_table = 'softwares'
