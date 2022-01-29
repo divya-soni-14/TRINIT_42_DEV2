@@ -63,7 +63,10 @@
             <a class="nav-link disabled">Disabled</a>
           </li>
           <li>
-            <a type="button" href="/login" class="btn btn-secondary">Logout</a>
+            <a type="button" href="/login" class="btn btn-secondary">LogIN</a>
+          </li>
+          <li>
+            <a type="button" href="/logout" class="btn btn-secondary">Logout</a>
           </li>
         </ul>
       </div>
@@ -71,6 +74,12 @@
   </nav>
 
   <body>
+    {% if error %}
+      {{error}}
+    {% endif %}
+    {% if data %}
+      {{data}}
+    {% endif %}
     {% block content %}
     <!-- content -->
     {% endblock %}

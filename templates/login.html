@@ -13,13 +13,15 @@
         <h2 class="text-uppercase text-center mb-5" style="color: black">
           Welcome Back
         </h2>
-        <form>
+        <form action="#" method="POST">
+          {% csrf_token %}
           <!-- Email input -->
           <div class="form-outline mb-4">
             <label class="form-label" for="form1Example13">Username</label>
             <input
-              type="email"
-              id="form1Example13"
+              type="username"
+              id="username"
+              name="username"
               class="form-control form-control-lg"
             />
           </div>
@@ -29,7 +31,8 @@
             <label class="form-label" for="form1Example23">Password</label>
             <input
               type="password"
-              id="form1Example23"
+              id="password"
+              name="password"
               class="form-control form-control-lg"
             />
           </div>
@@ -52,9 +55,10 @@
           </div>
 
           <!-- Submit button -->
-          <button type="submit" class="btn btn-primary btn-lg btn-block">
+          <input type="submit">
+          <!-- <button type="submit" class="btn btn-primary btn-lg btn-block">
             Log in
-          </button>
+          </button> -->
           <p class="text-center text-muted mt-2 mb-0">
             Don't have an account?
             <a href="{% url 'register' %}" class="fw-bold text-body"
