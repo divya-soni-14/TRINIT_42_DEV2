@@ -5,3 +5,39 @@
   height: 1px;
   background: #eee;
 }
+body {
+  background: #082032;
+  font-family: Poppins;
+}
+.form-label {
+  color: rgba(255, 255, 255, 0.85);
+  margin: none;
+
+}
+.form-control {
+  background-color: transparent;
+  border: 2.5px solid #334756;
+  color: transparent;
+  border-radius: 15px;
+  padding: 10px 5px;
+  font-size: medium;
+  margin: 0;
+}
+
+.form-control:focus {
+  background: transparent;
+  border: 2.5px solid #334756;
+  color: white;
+  padding-left: 15px;
+  font-weight: regular;
+}
+.btn-primary {
+  background: #FF4C29;
+  color: white;
+  font-weight: bold;
+  border: none  ;
+  border-radius: 15px;
+}
+.login_section {
+  padding-top: 50px;
+}
