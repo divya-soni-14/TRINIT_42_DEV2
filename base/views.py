@@ -1,10 +1,9 @@
 from django.shortcuts import redirect, render
-
 from .models import *  # table DATA   field1(string) | field2(int)
 
 
 def home(request):
- 
+    allUsers = users.objects.all()
     return render(request, "home.html")
 
 
