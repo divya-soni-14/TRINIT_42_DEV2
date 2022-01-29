@@ -22,29 +22,14 @@
   <nav class="navbar navbar-fixed navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">paper</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-      <!-- <li class="nav-item"> -->
-        <!-- <a class="nav-link active" aria-current="page" href="#">Home</a> -->
-      <!-- </li> -->
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
-        <ul class="nav">
+       <ul class="nav">
           {% if not user.is_authenticated %}
             <li>
               <a type="button" href="/login" class="btn btn-secondary">LogIN</a>
             </li>
           {% endif %}
           {% if user.is_authenticated %}
-            <li>{{user}}</li>
+            <div style="height: 100%;font-size: 1.5em;color:black;margin-right: 5px;">{{user}}</div>
             <li>
               <a type="button" href="/logout" class="btn btn-secondary">Logout</a>
             </li>
@@ -52,6 +37,7 @@
         </ul>
     </div>
   </nav>
+
 
   <body>
     {% if error %}

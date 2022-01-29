@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% block content %}
+<section class="vh-100 bg-image">
+  <div class="container mt-5">
+    <div class="row justify-content-center align-items-center">
+      <div class="col text-center"><h2>Create An Account</h2></div>
+    </div>
+    <style>
+      input{
+        display: block;
+        width: 100%;
+      }
+      label{
+        display: block;
+      }
+    </style>
+    <form action="" method="POST">
+      {% csrf_token %}
+          {{ form }}
+          <center>
+          <div class="form-group">
+            <button class="btn btn-success" type="submit">Sign Up</button>
+        </div>
+        </center>
+    </form>
+  </div>
+</section>
+{% endblock %}
