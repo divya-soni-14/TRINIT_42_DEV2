@@ -55,8 +55,8 @@ class userDetail(models.Model):
 
 class bugs(models.Model):
     UID = models.UUIDField(default=uuid4, editable=False)
-    title = models.TextField(max_length=1500, default="")
-    bug = models.TextField(max_length=1000)
+    title = models.TextField(max_length=500, default="")
+    bug = models.TextField(max_length=500)
     mids = models.TextField()
     reporter = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     tags = models.TextField()
@@ -72,6 +72,9 @@ class bugs(models.Model):
         managed = True
         app_label = "base"
         db_table = "bugs"
+
+    def __str__(self):
+        return self.title
 
 
 class messages(models.Model):

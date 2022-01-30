@@ -95,7 +95,17 @@ def home(request):
 
 
 def report_bug(request):
-    form = forms.BugForm()
+    if request.method == "POST":
+        form = forms.BugForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # title = form.cleaned_data["title"]
+            # bug = form.cleaned_data["bug"]
+            # tags = form.cleaned_data["tags"]
+            # print(title, bug, tags)
+    else:
+        form = forms.BugForm()
+
     context = {"form": form}
     return render(request, "report.html", context)
 
