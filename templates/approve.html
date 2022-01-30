@@ -4,7 +4,7 @@
     APPROVE AND ASSIGN
   </h2>
   <div class="row mt-5">
-    <div class="col-8">
+    <div class="col-7">
       <div class="card">
         <div class="card-body">
           <article class="post">
@@ -24,18 +24,15 @@
         </div>
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-5">
       <div class="card">
-        <div class="card-body">
-          <h5>ASSIGNED TO</h5>
-          <p>USER, USER, USER</p>
-
-          <h5>DEADLINE</h5>
-          <p></p>
-          <h5>SEVERITY LEVEL</h5>
-          <p>{{ bug.visibility}} (lower value has lower severity)</p>
-          <h5>VISIBILITY LEVEL</h5>
-          <p>{{bug.visibility }} (lower value has higher visbility)</p>
+        <div class="card-body white-form" style="color: black">
+          <form method="POST" class="post-form">
+            {% csrf_token %} {{ form.as_p }}
+            <button type="submit" class="save btn btn-secondary">
+              ASSIGN AND APPROVE BUG
+            </button>
+          </form>
         </div>
       </div>
     </div>

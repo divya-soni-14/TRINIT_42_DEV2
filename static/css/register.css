@@ -1,7 +1,11 @@
 form p {
-  color: white !important;
+  color: white;
 }
 
 textarea {
   max-height: 100px !important;
+}
+
+.white-form p {
+  color: black !important;
 }

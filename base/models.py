@@ -62,6 +62,7 @@ class bugs(models.Model):
     tags = models.TextField()
     # 0 - unverfied, 1 -  open, 2- assigned, 3 - resolved, 4 - closed
     status = models.CharField(max_length=10, default="0")
+    is_approved = models.BooleanField(default=False)
     # visibility matches with access level. a bug with a lower visibility can be seen by everyone on the same or higher access level
     visibility = models.IntegerField(default=0)
     is_public = models.BooleanField(default=False)

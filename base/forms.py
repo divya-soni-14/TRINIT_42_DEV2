@@ -16,7 +16,14 @@ class BugForm(forms.ModelForm):
     #     self.help.add_input(Submit)
 
 
-class AssignForm(forms.ModelForm):
+class ApproveForm(forms.ModelForm):
     class Meta:
         model = bugs
-        fields = ("status", "visibility", "is_public", "deadline", "assignee")
+        fields = (
+            "status",
+            "visibility",
+            "is_public",
+            "deadline",
+            "assignee",
+            "is_approved",
+        )

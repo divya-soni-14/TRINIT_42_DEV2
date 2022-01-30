@@ -119,9 +119,8 @@ def view_bug(request, pk):
 
 def approve_bug(request, pk):
     bug = get_object_or_404(bugs, pk=pk)
-    context = {"bug": bug}
     if request.method == "POST":
-        form = forms.BugForm(request.POST)
+        form = forms.ApproveForm(request.POST, instance=bug)
         if form.is_valid():
             form.save()
             # title = form.cleaned_data["title"]
@@ -129,7 +128,9 @@ def approve_bug(request, pk):
             # tags = form.cleaned_data["tags"]
             # print(title, bug, tags)
     else:
-        form = forms.BugForm()
+        form = forms.ApproveForm()
+    context = {"bug": bug, "form": form}
+
     return render(request, "approve.html", context)
 
 
