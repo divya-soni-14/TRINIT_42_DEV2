@@ -117,6 +117,22 @@ def view_bug(request, pk):
     return render(request, "bug.html", context)
 
 
+def approve_bug(request, pk):
+    bug = get_object_or_404(bugs, pk=pk)
+    context = {"bug": bug}
+    if request.method == "POST":
+        form = forms.BugForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # title = form.cleaned_data["title"]
+            # bug = form.cleaned_data["bug"]
+            # tags = form.cleaned_data["tags"]
+            # print(title, bug, tags)
+    else:
+        form = forms.BugForm()
+    return render(request, "approve.html", context)
+
+
 def register_teamcode(request):
     return render(request, "register_teamcode.html")
 

@@ -32,4 +32,5 @@ urlpatterns = [
     path("dashboard/", views.dashboard, name="dashboard"),
     path("bug/new/", views.report_bug, name="new_bug"),
     path("bug/<str:pk>/", views.view_bug, name="bug_detail"),
+    path("approve/<str:pk>/", views.approve_bug, name="approve_bug"),
 ]

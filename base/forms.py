@@ -14,3 +14,9 @@ class BugForm(forms.ModelForm):
     #     self.helper = FormHelper()
     #     self.helper.form_method = "post"
     #     self.help.add_input(Submit)
+
+
+class AssignForm(forms.ModelForm):
+    class Meta:
+        model = bugs
+        fields = ("status", "visibility", "is_public", "deadline", "assignee")
