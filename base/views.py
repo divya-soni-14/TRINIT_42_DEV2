@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.contrib.auth.hashers import make_password
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth import login, logout, authenticate
@@ -13,7 +14,7 @@ from django.views.generic import (
     UpdateView,
 )
 
-from base import forms
+from .forms import *
 from .models import *
 
 # table users, bugs, messages , teams, softwares
@@ -35,52 +36,6 @@ def register(request):
     return render(request, "register.html")
 
 
-def lin(request):
-    print(request.user)
-    if request.user.is_authenticated:
-        print("alledyy man")
-        return redirect("home")
-    if request.method == "POST":
-        response = {}
-        username = request.POST.get("username")
-        password = request.POST.get("password")
-        print(username, password)
-        password = make_password(password, salt="nothing")
-        # user = users.objects.get(username=username)
-        # print(password,user.password)
-        # if user.password == password:
-        #     print(user.last_login)
-        #     # authenticate(request,user)
-        #     login(request, user)
-        # print("success")
-        return redirect("home")
-        # else:
-        #     response['error'] = 'username and password do not match.'
-        #     print("offo")
-        #     return render(request, 'login.html', response)
-    else:
-        print("bypasss")
-        return render(request, "login.html")
-
-
-def lout(request):
-    logout(request)
-    return home(request)
-
-
-class UserCreateForm(UserCreationForm):
-    class Meta:
-        fields = (
-            "first_name",
-            "last_name",
-            "username",
-            "email",
-            "password1",
-            "password2",
-        )
-        model = User
-
-
 class SignUp(CreateView):
     form_class = UserCreateForm
     template_name = "signup.html"
@@ -95,16 +50,22 @@ def home(request):
 
 
 def report_bug(request):
+    if not request.user.is_authenticated:
+        return reverse_lazy("login")
     if request.method == "POST":
-        form = forms.BugForm(request.POST)
+        form = BugForm(request.POST)
         if form.is_valid():
-            form.save()
-            # title = form.cleaned_data["title"]
-            # bug = form.cleaned_data["bug"]
-            # tags = form.cleaned_data["tags"]
-            # print(title, bug, tags)
+            bug = bugs()
+            bug.title = form.cleaned_data["title"]
+            bug.bug = form.cleaned_data["bug"]
+            bug.tags = form.cleaned_data["tags"]
+            bug.date_created = datetime.now()
+            bug.reporter = request.user
+            bug.save()
+            print(bug)
+            return redirect("home")
     else:
-        form = forms.BugForm()
+        form = BugForm()
 
     context = {"form": form}
     return render(request, "report.html", context)
@@ -142,3 +103,18 @@ def dashboard(request):
     all_bugs = bugs.objects.all()
     context = {"bugs": all_bugs}
     return render(request, "bugs_dashboard.html", context)
+
+
+def org(request, pk):
+    response = {}
+    response["organisations"] = get_object_or_404(organisation, pk=pk)
+    return render(request, "bugs.html", response)
+
+
+def software(request, pk):
+    response = {}
+    org = get_object_or_404(organisation, pk)
+    if org:
+        soft = org.software_ids.split(" ")
+        response["softwares"] = softwares.objects.filter(UID__in=soft)
+        return render(request, "display.html", response)
