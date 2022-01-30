@@ -19,7 +19,6 @@ class BugForm(forms.ModelForm):
     #     self.help.add_input(Submit)
 
 
-<<<<<<< HEAD
 class UserCreateForm(UserCreationForm):
     class Meta:
         fields = (
@@ -31,9 +30,7 @@ class UserCreateForm(UserCreationForm):
             "password2",
         )
         model = User
-=======
 class AssignForm(forms.ModelForm):
     class Meta:
         model = bugs
         fields = ("status", "visibility", "is_public", "deadline", "assignee")
->>>>>>> e445bc17700e5eb638488fc925f47e7a0ff02db9
