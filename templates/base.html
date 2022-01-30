@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{% static 'css/login.css' %}" />
     <link rel="stylesheet" href="{% static 'css/register.css' %}" />
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
     <!-- import css here and add the css file to static/css/  OR https link -->
 
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
@@ -24,30 +25,32 @@
   <nav class="navbar navbar-fixed navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">paper</a>
-       <ul class="nav">
-          {% if not user.is_authenticated %}
-            <li>
-              <a type="button" href="/login" class="btn btn-secondary">LogIN</a>
-            </li>
-          {% endif %}
-          {% if user.is_authenticated %}
-            <div style="height: 100%;font-size: 1.5em;color:black;margin-right: 5px;">{{user}}</div>
-            <li>
-              <a type="button" href="/logout" class="btn btn-secondary">Logout</a>
-            </li>
-          {% endif %}
-        </ul>
+      <ul class="nav">
+        {% if not user.is_authenticated %}
+        <li>
+          <a type="button" href="/login" class="btn btn-secondary">LogIN</a>
+        </li>
+        {% endif %} {% if user.is_authenticated %}
+        <div
+          style="
+            height: 100%;
+            font-size: 1.5em;
+            color: black;
+            margin-right: 5px;
+          "
+        >
+          {{user}}
+        </div>
+        <li>
+          <a type="button" href="/logout" class="btn btn-secondary">Logout</a>
+        </li>
+        {% endif %}
+      </ul>
     </div>
   </nav>
 
-
   <body>
-    {% if error %}
-      {{error}}
-    {% endif %}
-    {% if data %}
-      {{data}}
-    {% endif %}
+    <!-- {% if error %} {{error}} {% endif %} {% if data %} {{data}} {% endif %} {% -->
     {% block content %}
     <!-- content -->
     {% endblock %}

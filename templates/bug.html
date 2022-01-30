@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container container-fluid">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col"></div>
+  </div>
+</div>
+<article class="post">
+  {% if bug.date_created %}
+  <time class="date"> {{ post.date_created }} </time>
+  {% endif %}
+  <h2>{{ bug.reporter.username }}</h2>
+  <p>{{ bug.bug|linebreaksbr }}</p>
+</article>
+
+{% endblock %}

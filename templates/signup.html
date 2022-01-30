@@ -5,22 +5,24 @@
       <div class="col text-center"><h2>Create An Account</h2></div>
     </div>
     <style>
-      input{
+      * {
+        color: white;
+      }
+      input {
         display: block;
         width: 100%;
       }
-      label{
+      label {
         display: block;
       }
     </style>
     <form action="" method="POST">
-      {% csrf_token %}
-          {{ form }}
-          <center>
-          <div class="form-group">
-            <button class="btn btn-success" type="submit">Sign Up</button>
+      {% csrf_token %} {{ form }}
+      <center>
+        <div class="form-group">
+          <button class="btn btn-success" type="submit">Sign Up</button>
         </div>
-        </center>
+      </center>
     </form>
   </div>
 </section>
