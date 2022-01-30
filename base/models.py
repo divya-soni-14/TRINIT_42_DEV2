@@ -31,7 +31,7 @@ class softwares(models.Model):
 class teams(models.Model):
     UID = models.UUIDField(default=uuid4, editable=False)
     software = models.ForeignKey(softwares, null=True, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, null=True)
     participantsid = models.TextField()
     lead = models.CharField(max_length=255)
     sdev = models.TextField()
@@ -47,7 +47,7 @@ class userDetail(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     # access levels 0 - user, 1 - jr dev, 2 - sr dev, 3 - tech lead, 4 - superuser
     access_level = models.IntegerField(default=0)
-
+    team= models.CharField(max_length=255, default='')
     class Meta:
         managed = True
         app_label = "base"
@@ -56,6 +56,7 @@ class userDetail(models.Model):
 
 class bugs(models.Model):
     UID = models.UUIDField(default=uuid4, editable=False)
+    # team = models.ForeignKey(teams, on_delete=models.CASCADE, default='')
     title = models.TextField(max_length=500, default="")
     bug = models.TextField(max_length=500)
     mids = models.TextField()
@@ -71,6 +72,7 @@ class bugs(models.Model):
     date_updated = models.DateTimeField(null=True)
     deadline = models.DateTimeField(null=True)
     assignee = models.TextField(max_length=100, default="")
+
 
     class Meta:
         managed = True

@@ -30,6 +30,8 @@ class UserCreateForm(UserCreationForm):
             "password2",
         )
         model = User
+    
+    
 
 
 class ApproveForm(forms.ModelForm):

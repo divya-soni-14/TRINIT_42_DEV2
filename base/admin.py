@@ -6,4 +6,5 @@ admin.site.register(bugs)
 admin.site.register(messages)
 admin.site.register(teams)
 admin.site.register(softwares)
+admin.site.register(userDetail)
 

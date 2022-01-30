@@ -14,7 +14,7 @@ from django.views.generic import (
     UpdateView,
 )
 
-from .forms import *
+from .forms import BugForm, ApproveForm, UserCreateForm
 from .models import *
 
 # table users, bugs, messages , teams, softwares
@@ -44,6 +44,10 @@ class SignUp(CreateView):
 
 def home(request):
     response = {}
+    # if(request.user.is_authenticated):
+    #     userDet = userDetail.get(user = request.user)
+    #     if not userDet:
+    #         userDetail.objects.create(access_level="0", user=request.user)
     # users.objects.create(username = "kiwi", password = make_password("kiwi",salt="nothing"), email="kiwi@google.com", firstname = "kiwi", lastname = "kiwi", organisation = "kiwi")
     # response['data'] = request.user
     return render(request, "home.html", response)
@@ -81,15 +85,16 @@ def view_bug(request, pk):
 def approve_bug(request, pk):
     bug = get_object_or_404(bugs, pk=pk)
     if request.method == "POST":
-        form = forms.ApproveForm(request.POST, instance=bug)
+        form = ApproveForm(request.POST, instance=bug)
         if form.is_valid():
             form.save()
+            redirect("dashboard")
             # title = form.cleaned_data["title"]
             # bug = form.cleaned_data["bug"]
             # tags = form.cleaned_data["tags"]
             # print(title, bug, tags)
     else:
-        form = forms.ApproveForm()
+        form = ApproveForm()
     context = {"bug": bug, "form": form}
 
     return render(request, "approve.html", context)
@@ -100,8 +105,19 @@ def register_teamcode(request):
 
 
 def dashboard(request):
+    user = request.user
+    # userDet = userDetail.objects.get(user=user)
+    # print(userDet.access_level)
     all_bugs = bugs.objects.all()
     context = {"bugs": all_bugs}
+    is_pub = False
+    # for bug in all_bugs:
+    #     is_pub = bug.is_public
+    #     if(is_pub):
+    #         finalBugs.append()
+
+       
+        
     return render(request, "bugs_dashboard.html", context)
 
 
