@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 
 <div class="container">
+  
   <h1 class="m-1 mt-2 text-center" style="color: white">Hey Name!</h1>
   <p class="text-center" style="color: white">Here's your bugs for today!</p>
   <hr />
@@ -16,8 +17,23 @@
             >
           </h3>
           <span style="margin-top: -1rem"
-            >Organisation: X | Team ID: xyz | Assigned To @User | Status:
-            {{bug.status}} | Visibility: {{bug.visibility}}</span
+            >Reported by : @{{bug.reporter}} | Status:
+            {%if bug.status == '0' %}
+              UNVERIFIED
+            {% endif %}
+            {% if bug.status == '1' %}
+              OPEN
+            {% endif %}
+            {% if bug.status == '2' %}
+              ASSIGNED
+            {% endif %}
+            {% if bug.status == '3' %}
+              RESOLVED
+            {% endif %}
+            {% if bug.status == '4' %}
+              unverified
+            {% endif %}
+            </span
           >
           <br />
           <br />

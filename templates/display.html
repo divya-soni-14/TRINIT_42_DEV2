@@ -1,0 +1,56 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<div class="container">
+  
+  <h1 class="m-1 mt-2 text-center" style="color: white">Hey Name!</h1>
+  <p class="text-center" style="color: white">Here's your bugs for today!</p>
+  <hr />
+  {% for organisation in organisations %}
+  <div class="row mt-0">
+    <div class="col-sm-12 mt-0 p-0 mb-0" style="max-height: 200px">
+      <div class="blog_card">
+        <div class="blog_card_content">
+          <h3>
+            {{organisation.name}}
+            <span style="font-size: 1rem; align-items: center; color: gray"
+              >#{{ organisation.UID }}</span
+            >
+          </h3>
+          <span style="margin-top: -1rem"
+            >Softwares : organisation.softwares</span>
+          <br />
+          <br />
+          <span>
+            <a href="{% url 'bug_detail' pk=organisation.pk %}">View organisation</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+  {% for software in softwares %}
+  <div class="row mt-0">
+    <div class="col-sm-12 mt-0 p-0 mb-0" style="max-height: 200px">
+      <div class="blog_card">
+        <div class="blog_card_content">
+          <h3>
+            {{software.name}}
+            <span style="font-size: 1rem; align-items: center; color: gray"
+              >#{{ organisation.UID }}</span
+            >
+          </h3>
+          <span style="margin-top: -1rem"
+            >Organisation : software.organisation</span>
+          <br />
+          <br />
+          <span>
+            <a href="{% url 'bug_detail' pk=software.pk %}">View software</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

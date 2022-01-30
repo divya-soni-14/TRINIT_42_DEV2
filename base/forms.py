@@ -1,5 +1,8 @@
 from django import forms
 from .models import bugs
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
 
 STATUS_OPTIONS = [("0", 0), ("1", 1), ("2", 2), ("3", 3), ("4", 4)]
 
@@ -14,3 +17,16 @@ class BugForm(forms.ModelForm):
     #     self.helper = FormHelper()
     #     self.helper.form_method = "post"
     #     self.help.add_input(Submit)
+
+
+class UserCreateForm(UserCreationForm):
+    class Meta:
+        fields = (
+            "first_name",
+            "last_name",
+            "username",
+            "email",
+            "password1",
+            "password2",
+        )
+        model = User

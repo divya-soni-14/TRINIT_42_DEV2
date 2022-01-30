@@ -1,11 +1,26 @@
 {% extends 'base.html' %} {% block content %}
 
+<style>
+  h2,p,label{
+    color:white;
+    display:block;
+  }
+  textarea{
+    width:50%;
+    height:200px;
+  }
+  .save{
+    display:block;
+    margin-bottom: 100px;
+  }
+  </style>
 <div class="container justify-content-center text-center">
   <h2 style="color: white">REPORT A BUG</h2>
-
   <form style="color: white" method="POST" class="post-form">
     {% csrf_token %} {{ form.as_p }}
+    <center>
     <button type="submit" class="save btn btn-secondary">REPORT BUG</button>
+    </center>
   </form>
 </div>
 

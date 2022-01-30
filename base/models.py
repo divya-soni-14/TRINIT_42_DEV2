@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+
 class organisation(models.Model):
     UID = models.UUIDField(default=uuid4, editable=False)
     name = models.CharField(max_length=50)
