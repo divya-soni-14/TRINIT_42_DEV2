@@ -68,6 +68,8 @@ class bugs(models.Model):
     is_public = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(null=True)
+    deadline = models.DateTimeField(null=True)
+    assignee = models.TextField(max_length=100, default="")
 
     class Meta:
         managed = True
